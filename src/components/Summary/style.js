@@ -18,17 +18,12 @@ export const style = {
   briefDiv: {
     marginLeft: _10px
   },
-  title:{
-    // marginBottom: _10px,
+  title: {
     fontSize: "1.5em",
     fontWeight: "bold"
   },
-  likes: {
-    // marginBottom: _10px,
-  },
-  checkIns: {
-    // padding: _10px,
-  },
+  likes: {},
+  checkIns: {},
   infoDiv: {
     marginTop: _10px
   },
