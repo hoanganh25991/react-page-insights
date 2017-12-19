@@ -1,10 +1,14 @@
 const imgHeight = 87
 const _10px = 10
+const _310px = 310
+const chartHeight = 200
+const chartTranslateX = -30
 export const style = {
   rootDiv: {
+    borderRadius: 5,
     lineHeight: "150%",
     padding: _10px,
-    width: 310,
+    width: _310px,
     border: "1px solid black"
   },
   imgDiv: {
@@ -29,5 +33,12 @@ export const style = {
   },
   genderDiv: {
     marginTop: _10px
+  },
+  genderChart: {
+    marginTop: _10px,
+    width: _310px,
+    height: chartHeight,
+    transition: "0.3s all ease-in-out",
+    transform: `translateX(${chartTranslateX}px)`
   }
 }
