@@ -5,7 +5,7 @@ class App extends PureComponent {
   render() {
     return (
       <div className="App">
-        <Summary/>
+        <Summary fbId={"1582722098684919"}/>
       </div>
     );
   }
