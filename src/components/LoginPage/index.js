@@ -58,7 +58,7 @@ export default class LoginPage extends PureComponent {
     const fbSdkLoaded = Boolean(FB)
 
     return (
-      <div style={s.chartsDiv}>
+      <div style={s.chartDiv}>
         {!fbSdkLoaded && "FB SDK being loaded..."}
         {fbSdkLoaded && (
           <Fragment>

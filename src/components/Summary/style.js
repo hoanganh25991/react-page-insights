@@ -1,18 +1,18 @@
 const imgHeight = 87
 const _10px = 10
-const _20px = 20
+export const _20px = 20
 const _310px = 310
 const chartHeight = 200
 const chartTranslateX = -30
 export const style = {
-  chartsDiv: {
+  chartDiv: {
     borderRadius: 5,
     lineHeight: "150%",
     padding: _10px,
     width: _310px,
     border: "1px solid black",
-    marginBottom: _20px,
-    marginLeft: _20px
+    marginBottom: _20px
+    // marginLeft: _20px
   },
   imgDiv: {
     display: "flex",

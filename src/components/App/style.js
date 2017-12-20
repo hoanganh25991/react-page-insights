@@ -7,10 +7,10 @@ export const style = {
     borderRadius: curveRadius,
     padding: _20px
   },
-  chartsDiv: {
+  chartDiv: {
     width: "50vw",
     minWidth: 320,
-    maxWidth: 800
+    maxWidth: 640
   },
   title: {
     fontSize: "1.6em",
@@ -19,9 +19,9 @@ export const style = {
     // padding: _20px,
   },
   chartsDivHasData: {
-    width: "50vw",
+    width: "75vw",
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "space-between"
   }
 }

@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from "react"
 import { style as s } from "./style"
 import Summary from "../Summary"
+import { _20px } from "../Summary/style"
 import LoginPage, { STORAGE_PAGE_TOKENS_KEY } from "../LoginPage"
 import { getPageAccessTokens } from "../../facebook-api/pageInsights"
 
@@ -30,7 +31,7 @@ export default class App extends PureComponent {
     const { pageAccessTokens } = this.state
     const loginPage = !pageAccessTokens
     const hasPages = pageAccessTokens && pageAccessTokens.length > 0
-    const rootDivS = hasPages ? { ...s.chartsDiv, ...s.chartsDivHasData } : s.chartsDiv
+    const rootDivS = hasPages ? { ...s.chartDiv, ...s.chartsDivHasData } : s.chartDiv
 
     return (
       <div style={s.rootDiv}>
@@ -42,7 +43,6 @@ export default class App extends PureComponent {
             <Fragment>
               {pageAccessTokens.map(page => {
                 const { id: pageId, access_token: pageToken } = page
-                _("[pageId, pageToken]", pageId, pageToken)
                 return <Summary key={pageId} pageId={pageId} pageToken={pageToken} />
               })}
             </Fragment>

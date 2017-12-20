@@ -27,7 +27,7 @@ export default class Summary extends PureComponent {
     const { likes, check_ins, impressions, engagements, post_engagements, reactions, gender_ages } = pageInsights
 
     return (
-      <div style={s.chartsDiv}>
+      <div style={s.chartDiv}>
         <div style={s.imgDiv}>
           <img src={defaultImg} style={s.img} alt={"Page Icon"} />
           <div style={s.briefDiv}>
