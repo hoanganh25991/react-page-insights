@@ -10,7 +10,8 @@ export default class Summary extends PureComponent {
   state = {}
 
   async componentDidMount() {
-    const { pageId, pageToken } = this.props
+    const { page = {} } = this.props
+    const { id: pageId, access_token: pageToken } = page
     const hasBoth = pageId && pageToken
 
     _("[pageId, pageToken]", pageId, pageToken)
@@ -24,6 +25,8 @@ export default class Summary extends PureComponent {
 
   render() {
     const { pageInsights = {} } = this.state
+    const { page = {} } = this.props
+    const { name } = page
     const { likes, check_ins, impressions, engagements, post_engagements, reactions, gender_ages } = pageInsights
 
     return (
@@ -31,7 +34,7 @@ export default class Summary extends PureComponent {
         <div style={s.imgDiv}>
           <img src={defaultImg} style={s.img} alt={"Page Icon"} />
           <div style={s.briefDiv}>
-            <div style={s.title}>Little India</div>
+            <div style={s.title}>{name}</div>
             <div style={s.likes}>
               <strong>{likes}</strong> likes
             </div>

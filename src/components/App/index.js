@@ -42,8 +42,8 @@ export default class App extends PureComponent {
           {hasPages && (
             <Fragment>
               {pageAccessTokens.map(page => {
-                const { id: pageId, access_token: pageToken } = page
-                return <Summary key={pageId} pageId={pageId} pageToken={pageToken} />
+                const { id: pageId } = page
+                return <Summary key={pageId} page={page} />
               })}
             </Fragment>
           )}
