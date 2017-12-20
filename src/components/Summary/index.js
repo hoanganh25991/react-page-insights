@@ -12,9 +12,13 @@ export default class Summary extends PureComponent {
   async componentDidMount() {
     const { pageId, pageToken } = this.props
     const hasBoth = pageId && pageToken
-    if (!hasBoth) _("[WARN] Need both pageId & pageToken to run")
+
+    _("[pageId, pageToken]", pageId, pageToken)
+    if (!hasBoth) return _("[WARN] Need both pageId & pageToken to run")
+
     const { pageInsights } = await getPageInsights({ pageId, pageToken })
     _("[getPageInsights]", pageInsights)
+
     this.setState({ pageInsights })
   }
 
@@ -23,7 +27,7 @@ export default class Summary extends PureComponent {
     const { likes, check_ins, impressions, engagements, post_engagements, reactions, gender_ages } = pageInsights
 
     return (
-      <div style={s.rootDiv}>
+      <div style={s.chartsDiv}>
         <div style={s.imgDiv}>
           <img src={defaultImg} style={s.img} alt={"Page Icon"} />
           <div style={s.briefDiv}>
