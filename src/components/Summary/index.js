@@ -24,7 +24,7 @@ export default class Summary extends PureComponent {
     return (
       <div style={s.rootDiv}>
         <div style={s.imgDiv}>
-          <img src={defaultImg} style={s.img} />
+          <img src={defaultImg} style={s.img} alt={"Page Icon"} />
           <div style={s.briefDiv}>
             <div style={s.title}>Little India</div>
             <div style={s.likes}>
