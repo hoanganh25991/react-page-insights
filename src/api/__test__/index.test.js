@@ -1,4 +1,4 @@
-import {getPageInsights} from "../index";
+import { getPageInsights } from "../index"
 
 const _ = console.log
 const PASS = `\x1b[42m[PASS]\x1b[0m`
@@ -10,9 +10,9 @@ _("")
   let pass = true
 
   try {
-    const {pageInsights} = await getPageInsights(1582722098684919)
-    _("[pageInsights]", pageInsights)
-    if(!pageInsights) return pass = false
+    const { pageInsights } = await getPageInsights(1582722098684919)
+    _("[getPageInsights]", pageInsights)
+    if (!pageInsights) return (pass = false)
   } catch (err) {
     _(err)
     pass = false

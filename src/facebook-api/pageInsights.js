@@ -147,9 +147,17 @@ export const pageReactions = async ({ pageId, pageToken: access_token, date_pres
  * @returns {Array}
  */
 export const transformGenderAgesData = values => {
-  const totalSample = values.length
+  const noData = values.length === 0
+  if (noData) return []
+  let totalSample = values.length
   const genderAges = values.reduce((carry, vObj) => {
     const value = vObj.value
+
+    if (!value) {
+      totalSample += -1
+      return carry
+    }
+
     Object.keys(value).forEach(key => {
       // Extract (gender, age-range) from key name
       // value: {F.13-17: 8}
@@ -196,13 +204,13 @@ export const pageGenderAges = async ({ pageId, pageToken: access_token, date_pre
   return { gender_ages }
 }
 
-export const pageInsights = async ({ pageId, pageToken }) => {
+export const getPageInsights = async ({ pageId, pageToken }) => {
   const query = { pageId, pageToken }
   const { impressions } = await pageImpressions(query)
   const { engagements } = await pageEngagedUsers(query)
   const { post_engagements } = await pagePostEngagements(query)
   const { reactions } = await pageReactions(query)
   const { gender_ages } = await pageGenderAges(query)
-
-  return { impressions, engagements, post_engagements, reactions, gender_ages }
+  const pageInsights = { impressions, engagements, post_engagements, reactions, gender_ages }
+  return { pageInsights }
 }

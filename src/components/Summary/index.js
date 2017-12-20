@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react"
-import { getPageInsights } from "../../api/index"
 import { style as s } from "./style"
 import defaultImg from "../../img/default-img.png"
 import GenderChart from "../GenderChart"
+import { getPageInsights } from "../../facebook-api/pageInsights"
 
 const _ = console.log
 
@@ -10,10 +10,11 @@ export default class Summary extends PureComponent {
   state = {}
 
   async componentDidMount() {
-    const { fbId } = this.props
-    const { pageInsights } = await getPageInsights(fbId)
-    _("[pageInsights]", pageInsights)
-
+    const { pageId, pageToken } = this.props
+    const hasBoth = pageId && pageToken
+    if (!hasBoth) _("[WARN] Need both pageId & pageToken to run")
+    const { pageInsights } = await getPageInsights({ pageId, pageToken })
+    _("[getPageInsights]", pageInsights)
     this.setState({ pageInsights })
   }
 

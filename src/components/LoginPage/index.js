@@ -28,7 +28,8 @@ export default class LoginPage extends PureComponent {
   }
 
   loginFb = async () => {
-    const { FB, cbToken } = this.state
+    const { FB } = this.state
+    const { cbToken } = this.props
     if (!FB) return _("[WARN] Fb not loaded")
 
     const userAccessToken = await new Promise(rslv => {
@@ -46,7 +47,10 @@ export default class LoginPage extends PureComponent {
       )
     })
 
-    if (cbToken) cbToken(userAccessToken)
+    if (cbToken) {
+      _("[cbToken] Run cbToken")
+      cbToken(userAccessToken)
+    }
   }
 
   render() {
