@@ -14,6 +14,10 @@ export default class App extends PureComponent {
     this.setState({ pageAccessTokens })
   }
 
+  storeUserAccessToken = token => {
+    this.setState({ userAccessToken: token })
+  }
+
   render() {
     const { pageAccessTokens } = this.state
     const loginPage = !pageAccessTokens
@@ -22,7 +26,7 @@ export default class App extends PureComponent {
 
     return (
       <div style={s.rootDiv}>
-        {loginPage && <LoginPage />}
+        {loginPage && <LoginPage cbToken={this.storeUserAccessToken} />}
         {msgPage && "Dont have page to preview insights."}
         {summaryPage && <Summary fbId={"1582722098684919"} />}
       </div>
