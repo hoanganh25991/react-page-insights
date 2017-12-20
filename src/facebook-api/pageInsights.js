@@ -93,6 +93,26 @@ export const countTotalReactions = values => {
   }, 0)
 }
 
+export const pageFans = async ({ pageId, pageToken: access_token, date_preset, period, metric }) => {
+  date_preset = date_preset || "today"
+  period = period || "lifetime"
+  metric = metric || "page_fans"
+  const res = await callMetric({ pageId, access_token, date_preset, period, metric })
+  const values = extractDataFromGraphRes(res)
+  const fans = countTotalValues(values)
+  return { fans }
+}
+
+export const pageCheckIns = async ({ pageId, pageToken: access_token, date_preset, period, metric }) => {
+  date_preset = date_preset || "this_month"
+  period = period || "day"
+  metric = metric || "page_places_checkin_total"
+  const res = await callMetric({ pageId, access_token, date_preset, period, metric })
+  const values = extractDataFromGraphRes(res)
+  const check_ins = countTotalValues(values)
+  return { check_ins }
+}
+
 export const pageImpressions = async ({ pageId, pageToken: access_token, date_preset, period, metric }) => {
   date_preset = date_preset || "this_month"
   period = period || "day"
@@ -206,11 +226,13 @@ export const pageGenderAges = async ({ pageId, pageToken: access_token, date_pre
 
 export const getPageInsights = async ({ pageId, pageToken }) => {
   const query = { pageId, pageToken }
+  const { fans: likes } = await pageFans(query)
+  const { check_ins } = await pageCheckIns(query)
   const { impressions } = await pageImpressions(query)
   const { engagements } = await pageEngagedUsers(query)
   const { post_engagements } = await pagePostEngagements(query)
   const { reactions } = await pageReactions(query)
   const { gender_ages } = await pageGenderAges(query)
-  const pageInsights = { impressions, engagements, post_engagements, reactions, gender_ages }
+  const pageInsights = { likes, check_ins, impressions, engagements, post_engagements, reactions, gender_ages }
   return { pageInsights }
 }
